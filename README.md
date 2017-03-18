@@ -148,7 +148,7 @@ Currently documented environment variables:
 | Name           | Default Value | Description                        |
 | -------------- | ------------- | -----------------------------------| 
 | `ANSIBLE_PLAYBOOK` | `site.yml` | Ansible playbook filename |
-| `BOX_MEM` | *1536* | Per node RAM |
+| `BOX_MEM` | *1024* | Per node RAM |
 | `BOX_NAME` | *debian/jessie64* | Vagrant box name |
 | `CLUSTER_HOSTS` | `vagrant_hosts` | Inventory filename |
 | `CONSUL_DNSMASQ_ENABLE` | *false* | Enable DNSMasq forwarding |
