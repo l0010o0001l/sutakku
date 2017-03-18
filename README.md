@@ -80,8 +80,8 @@ You can use this role to stand up a complete HashiStack mini environment!
 If you wish to use the Vagrant and VirtualBox mini environment
 (for development/evaluation), then the following prerequisites are required:
 
-- VirtualBox (version 5.1.14 known to work)
-- Vagrant (version 1.9.1 known to work)
+- VirtualBox (version 5.1.18 known to work)
+- Vagrant (version 1.9.2 known to work)
 - Vagrant Hosts plugin (version 2.8.0 known to work)
 
 > Each of the virtual machines for this environment are configured with 1GB
@@ -93,8 +93,7 @@ If you wish to use the Vagrant and VirtualBox mini environment
 #### Step One
 
 To use the Vagrant mini environment, ensure that the requirements above are
-installed and the following IP addresses are resolved to the
-correct hostnames:
+installed and the following hostnames are resolved to these IP addresses:
 
 ```
 10.1.42.101 sutakku1.local sutakku1
@@ -141,7 +140,7 @@ Similarly, you can pass in a `BOX_NAME` to specify a different Linux
 distribution via an alternative box:
 
 ```
-BOX_NAME="centos/7" CONSUL_DNSMASQ_ENABLE="true" vagrant up
+BOX_NAME="bento/ubuntu-16.04" CONSUL_DNSMASQ_ENABLE="true" vagrant up
 ```
 
 Currently documented environment variables:
@@ -198,8 +197,8 @@ sutakku2  10.1.42.102:8300  10.1.42.102:8300  follower  true
 sutakku3  10.1.42.103:8300  10.1.42.103:8300  leader    true
 ```
 
-Try out the Consul web UI at: http://sutakku1.local:8500/ui/ to see what's going
-on with the registered services in your HashiStack.
+Try out the Consul web UI at: http://sutakku1.local:8500/ui/ to see what's
+going on with the registered services in your HashiStack.
 
 Check out the Nomad servers:
 
@@ -265,7 +264,7 @@ this role also installs some neat related open source tools:
 
 You'll find the latest binary versions in `bin` of this role after you have
 successfully executed it.
- 
+
 ## Notes
 
 - This project uses Debian 8 (Jessie) by default, but you can choose another

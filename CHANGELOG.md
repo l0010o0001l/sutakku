@@ -1,4 +1,4 @@
-## v1.0.0
+## v2.0.0
 
 - Installs a HashiStack comprised of:
  - 3 node Consul cluster
@@ -6,4 +6,8 @@
  - 2 servers / 1 client Nomad cluster
  - Optional Docker for Nomad
  - Extra tools like Consul Template, envconsul, plus local tool versions
- 
+
+## v2.0.1
+
+- Update license
+- Update README
