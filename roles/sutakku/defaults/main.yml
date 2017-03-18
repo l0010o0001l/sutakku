@@ -1,0 +1,49 @@
+---
+# defaults file for sutakku
+
+sutakku_bin_path: ./bin
+sutakku_user: vagrant
+
+## Consul
+sutakku_consul_version: "0.7.5"
+sutakku_consul_checksum_file_url: "https://releases.hashicorp.com/consul/{{ sutakku_consul_version }}/consul_{{ sutakku_consul_version }}_SHA256SUMS"
+sutakku_consul_linux_zip_url: "https://releases.hashicorp.com/consul/{{ sutakku_consul_version }}/consul_{{ sutakku_consul_version }}_linux_amd64.zip"
+sutakku_consul_macos_zip_url: "https://releases.hashicorp.com/consul/{{ sutakku_consul_version }}/consul_{{ sutakku_consul_version }}_darwin_amd64.zip"
+
+## Nomad
+sutakku_nomad_version: "0.5.4"
+sutakku_nomad_checksum_file_url: "https://releases.hashicorp.com/nomad/{{ sutakku_nomad_version }}/nomad_{{ sutakku_nomad_version}}_SHA256SUMS"
+sutakku_nomad_linux_zip_url: "https://releases.hashicorp.com/nomad/{{ sutakku_nomad_version }}/nomad_{{ sutakku_nomad_version }}_linux_amd64.zip"
+sutakku_nomad_macos_zip_url: "https://releases.hashicorp.com/nomad/{{ sutakku_nomad_version }}/nomad_{{ sutakku_nomad_version }}_darwin_amd64.zip"
+
+## Vault
+sutakku_vault_version: "0.6.4-ent"
+sutakku_vault_checksum_file_url: "https://releases.hashicorp.com/vault/{{ sutakku_vault_version }}/vault_{{ sutakku_vault_version}}_SHA256SUMS"
+sutakku_vault_linux_zip_url: "https://releases.hashicorp.com/vault/{{ sutakku_vault_version }}/vault_{{ sutakku_vault_version }}_linux_amd64.zip"
+sutakku_vault_macos_zip_url: "https://releases.hashicorp.com/vault/{{ sutakku_vault_version }}/vault_{{ sutakku_vault_version }}_darwin_amd64.zip"
+
+## Consul Template
+sutakku_consul_template_version: "0.18.1"
+sutakku_consul_template_checksum_file_url: "https://releases.hashicorp.com/consul-template/{{ sutakku_consul_template_version }}/consul-template_{{ sutakku_consul_template_version }}_SHA256SUMS"
+sutakku_consul_template_linux_zip_url: "https://releases.hashicorp.com/consul-template/{{ sutakku_consul_template_version }}/consul-template_{{ sutakku_consul_template_version }}_linux_amd64.zip"
+sutakku_consul_template_macos_zip_url: "https://releases.hashicorp.com/consul-template/{{ sutakku_consul_template_version }}/consul-template_{{ sutakku_consul_template_version }}_darwin_amd64.zip"
+sutakku_consul_template_linux_pkg: "consul-template_{{ sutakku_consul_template_version }}_linux_amd64.zip"
+sutakku_consul_template_linux_url: "{{ consul-template_linux_zip_url }}"
+
+# envconsul
+sutakku_envconsul_version: "0.6.2"
+sutakku_envconsul_checksum_file_url: "https://releases.hashicorp.com/envconsul/{{ sutakku_envconsul_version }}/envconsul_{{ sutakku_envconsul_version }}_SHA256SUMS"
+sutakku_envconsul_linux_zip_url: "https://releases.hashicorp.com/envconsul/{{ sutakku_envconsul_version }}/envconsul_{{ sutakku_envconsul_version }}_linux_amd64.zip"
+sutakku_envconsul_macos_zip_url: "https://releases.hashicorp.com/envconsul/{{ sutakku_envconsul_version }}/envconsul_{{ sutakku_envconsul_version }}_darwin_amd64.zip"
+sutakku_envconsul_linux_pkg: "envconsul_{{ sutakku_envconsul_version }}_linux_amd64.zip"
+sutakku_envconsul_linux_url: "{{ envconsul_linux_zip_url }}"
+
+sutakku_devtools: True
+
+sutakku_devtools_packages:
+  - git
+  - htop
+  - screen
+  - strace
+  - tmux
+  - vim

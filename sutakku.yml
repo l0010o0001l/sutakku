@@ -1,0 +1,23 @@
+---
+# File: site.yml - Example Sutakku site playbook
+
+- name: Sutakku - Activate!
+  hosts: cluster_nodes
+  any_errors_fatal: true
+  become: yes
+  become_user: root
+  roles:
+  - { role: brianshumate.consul }
+  - { role: brianshumate.nomad,
+            nomad_enable_docker: "false" }
+  - { role: brianshumate.vault }
+
+- name: Sutakku - Locals Only!
+  hosts: local_node
+  gather_facts: true
+  any_errors_fatal: true
+  become: no
+  vars:
+    - vault_primary_node: "suktakku1.local"
+  roles:
+  - { role: sutakku, gather_facts: "true" }

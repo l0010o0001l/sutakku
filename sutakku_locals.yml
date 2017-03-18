@@ -1,0 +1,17 @@
+---
+# File: sutakku_locals.yml - Example Sutakku local tools playbook
+#       Installs the following into ./bin/
+#
+#       - consul
+#       - nomad
+#       - vault
+#       - consul-template
+#       - envconsul
+
+- name: Locals Only
+  hosts: local_node
+  gather_facts: true
+  any_errors_fatal: true
+  become: no
+  roles:
+  - { role: sutakku, gather_facts: "true" }

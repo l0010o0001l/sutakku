@@ -1,0 +1,9 @@
+---
+# File: devtools.yml - Developer tools tasks for Sutakku
+
+- name: Additional OS packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ sutakku_devtools_packages }}"
+  tags: devtools

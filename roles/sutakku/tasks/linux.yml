@@ -1,0 +1,174 @@
+---
+# File: linux.yml - linux tasks file for Sutakku
+
+## Consul
+- name: Set package facts
+  set_fact:
+    sutakku_consul_pkg: "consul_{{ sutakku_consul_version }}_linux_amd64.zip"
+
+- name: Get consul package checksum file
+  become: no
+  connection: local
+  get_url: "url={{ sutakku_consul_checksum_file_url }} dest={{ role_path }}/files/consul_{{ sutakku_consul_version }}_SHA256SUMS"
+  run_once: true
+  tags: installation
+
+- name: Get Consul package checksum
+  become: no
+  connection: local
+  shell: "grep {{ sutakku_consul_pkg }} {{ role_path }}/files/consul_{{ sutakku_consul_version }}_SHA256SUMS"
+  run_once: true
+  register: sutakku_consul_sha256
+  tags: installation
+
+- name: Download Consul
+  become: no
+  connection: local
+  get_url: "url={{ sutakku_consul_linux_zip_url }} dest={{ role_path }}/files/{{ sutakku_consul_pkg }} checksum=sha256:{{ sutakku_consul_sha256.stdout.split(' ')|first }} timeout=74"
+  run_once: true
+  tags: installation
+
+- name: Unarchive Consul
+  become: no
+  connection: local
+  unarchive: "src={{ role_path }}/files/{{ sutakku_consul_pkg }} dest={{ sutakku_bin_path }}/"
+  run_once: true
+  tags: installation
+
+## Nomad
+- name: Set Nomad package
+  set_fact:
+    sutakku_nomad_pkg: "nomad_{{ sutakku_nomad_version }}_linux_amd64.zip"
+
+- name: Get nomad package checksum file
+  become: no
+  connection: local
+  get_url: "url={{ sutakku_nomad_checksum_file_url }} dest={{ role_path }}/files/nomad_{{ sutakku_nomad_version }}_SHA256SUMS"
+  run_once: true
+  tags: installation
+
+- name: Get Nomad package checksum
+  become: no
+  connection: local
+  shell: "grep {{ sutakku_nomad_pkg }} {{ role_path }}/files/nomad_{{ sutakku_nomad_version }}_SHA256SUMS"
+  run_once: true
+  register: sutakku_nomad_sha256
+  tags: installation
+
+- name: Download Nomad
+  become: no
+  connection: local
+  get_url: "url={{ sutakku_nomad_linux_zip_url }} dest={{ role_path }}/files/{{ sutakku_nomad_pkg }} checksum=sha256:{{ sutakku_nomad_sha256.stdout.split(' ')|first }} timeout=74"
+  run_once: true
+  tags: installation
+
+- name: Unarchive Nomad
+  become: no
+  connection: local
+  unarchive: "src={{ role_path }}/files/{{ sutakku_nomad_pkg }} dest={{ sutakku_bin_path }}/"
+  run_once: true
+  tags: installation
+
+## Vault
+- name: Set Vault package
+  set_fact:
+    sutakku_vault_pkg: "vault_{{ sutakku_vault_version }}_linux_amd64.zip"
+
+- name: Get Vault package checksum file
+  become: no
+  connection: local
+  get_url: "url={{ sutakku_vault_checksum_file_url }} dest={{ role_path }}/files/vault_{{ sutakku_vault_version }}_SHA256SUMS"
+  run_once: true
+  tags: installation
+
+- name: Get Vault package checksum
+  become: no
+  connection: local
+  shell: "grep {{ sutakku_vault_pkg }} {{ role_path }}/files/vault_{{ sutakku_vault_version }}_SHA256SUMS"
+  run_once: true
+  register: sutakku_vault_sha256
+  tags: installation
+
+- name: Download Vault
+  become: no
+  connection: local
+  get_url: "url={{ sutakku_vault_linux_zip_url }} dest={{ role_path }}/files/{{ sutakku_vault_pkg }} checksum=sha256:{{ sutakku_vault_sha256.stdout.split(' ')|first }} timeout=74"
+  run_once: true
+  tags: installation
+
+- name: Unarchive Vault
+  become: no
+  connection: local
+  unarchive: "src={{ role_path }}/files/{{ sutakku_vault_pkg }} dest={{ sutakku_bin_path }}/"
+  run_once: true
+  tags: installation
+
+# Consul Template
+- name: Set package facts
+  set_fact:
+    sutakku_consul_template_pkg: "consul-template_{{ sutakku_consul_template_version }}_linux_amd64.zip"
+
+- name: Get Consul Template package checksum file
+  become: no
+  connection: local
+  get_url: "url={{ sutakku_consul_template_checksum_file_url }} dest={{ role_path }}/files/consul-template_{{ sutakku_consul_template_version }}_SHA256SUMS"
+  run_once: true
+  tags: installation
+
+- name: Get Consul Template package checksum
+  become: no
+  connection: local
+  shell: "grep {{ sutakku_consul_template_pkg }} {{ role_path }}/files/consul-template_{{ sutakku_consul_template_version }}_SHA256SUMS"
+  run_once: true
+  register: sutakku_consul_template_sha256
+  tags: installation
+
+- name: Download Consul Template
+  become: no
+  connection: local
+  get_url: "url={{ sutakku_consul_template_linux_zip_url }} dest={{ role_path }}/files/{{ sutakku_consul_template_pkg }} checksum=sha256:{{ sutakku_consul_template_sha256.stdout.split(' ')|first }} timeout=74"
+  run_once: true
+  when: ansible_distribution  == "Debian" or ansible_distribution  == "RedHat"
+  tags: installation
+
+- name: Unarchive Consul Template
+  become: no
+  connection: local
+  unarchive: "src={{ role_path }}/files/{{ sutakku_consul_template_pkg }} dest={{ sutakku_bin_path }}/"
+  run_once: true
+  when: ansible_distribution  == "Debian" or ansible_distribution  == "RedHat"
+  tags: installation
+
+# envconsul
+- name: Set package facts
+  set_fact:
+    sutakku_envconsul_pkg: "envconsul_{{ sutakku_envconsul_version }}_linux_amd64.zip"
+
+- name: Get envconsul package checksum file
+  become: no
+  connection: local
+  get_url: "url={{ sutakku_envconsul_checksum_file_url }} dest={{ role_path }}/files/envconsul_{{ sutakku_envconsul_version }}_SHA256SUMS"
+  run_once: true
+  tags: installation
+
+- name: Get envconsul package checksum
+  become: no
+  connection: local
+  shell: "grep {{ sutakku_envconsul_pkg }} {{ role_path }}/files/envconsul_{{ sutakku_envconsul_version }}_SHA256SUMS"
+  run_once: true
+  register: sutakku_envconsul_sha256
+  tags: installation
+
+- name: Download envconsul
+  become: no
+  connection: local
+  get_url: "url={{ sutakku_envconsul_linux_zip_url }} dest={{ role_path }}/files/{{ sutakku_envconsul_pkg }} checksum=sha256:{{ sutakku_envconsul_sha256.stdout.split(' ')|first }} timeout=74"
+  run_once: true
+  tags: installation
+
+- name: Unarchive envconsul
+  become: no
+  connection: local
+  unarchive: "src={{ role_path }}/files/{{ sutakku_envconsul_pkg }} dest={{ sutakku_bin_path }}/"
+  run_once: true
+  tags: installation

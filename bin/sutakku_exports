@@ -1,0 +1,30 @@
+#!/bin/bash
+
+txtwht='\e[0;37m'
+txtrst='\e[0m'
+
+function _logmsg {
+  msgtxt="${1}"
+  printf "${txtwht}ℹ ${msgtxt}${txtrst}\n"
+}
+
+# Add this role's bindir to PATH
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/bin"
+export PATH="${SCRIPT_DIR}:${PATH}"
+_logmsg "Add ${SCRIPT_DIR} to PATH"
+
+# Consul HTTP address
+export CONSUL_HTTP_ADDR="sutakku1.local:8500"
+_logmsg "Set CONSUL_HTTP_ADDR to ${CONSUL_HTTP_ADDR}"
+
+# Consul RPC address
+export CONSUL_RPC_ADDR="sutakku1.local:8400"
+_logmsg "Set CONSUL_RPC_ADDR to ${CONSUL_RPC_ADDR}"
+
+# Point to the Nomad client instance
+export NOMAD_ADDR="http://sutakku3.local:4646"
+_logmsg "Set NOMAD_ADDR to ${NOMAD_ADDR}"
+
+# Vault address
+export VAULT_ADDR="http://sutakku1.local:8200"
+_logmsg "Set VAULT_ADDR to ${VAULT_ADDR}"

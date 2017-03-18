@@ -1,0 +1,12 @@
+# File: vagrant_hosts
+# Sutakku cluster node hosts configuration for Vagrant
+
+[cluster_nodes]
+sutakku1.local ansible_ssh_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/sutakku1/virtualbox/private_key consul_node_role=bootstrap nomad_node_role=bootstrap vault_node_role=primary
+
+sutakku2.local ansible_ssh_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/sutakku2/virtualbox/private_key consul_node_role=server nomad_node_role=server vault_node_role=secondary
+
+sutakku3.local ansible_ssh_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/sutakku3/virtualbox/private_key consul_node_role=server nomad_node_role=client vault_node_role=secondary
+
+[local_node]
+localhost ansible_connection=local
